@@ -1,0 +1,37 @@
+//A)
+int um_filho(Arv* arv){
+
+    if(arv==NULL){
+		return 0;
+	}
+
+        if(arv->esq != NULL && arv->dir == NULL){
+            return 1 + um_filho(arv->esq);
+            
+        }else if(arv->esq == NULL && arv->dir != NULL){
+            return 1 + um_filho(arv->dir);
+            
+        }else{ 
+            return um_filho(arv->esq) + um_filho(arv->dir);
+        }
+    
+
+}
+
+//B)
+int intermediarios(Arv* arv){
+
+    if(arv==NULL){
+		return 0;
+	}
+	
+    if(arv->esq == NULL && arv->dir == NULL){
+		return 0;
+
+	}else{
+
+        return 1 + intermediarios(arv->esq) + intermediarios(arv->dir);
+
+    }
+	
+}

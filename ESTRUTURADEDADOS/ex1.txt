@@ -1,0 +1,91 @@
+ListaD* trocaValores(ListaD* L, int M, int N){
+
+
+    ListaD* aux1 = L;
+    ListaD* aux2 = L;
+    int aux;
+    int auxv1=0;
+    int auxv2=0;
+    
+    while (aux1 != NULL && aux1->valor != M)
+    {
+        aux1 = aux1->prox;  
+
+    }
+
+    while (aux2 != NULL && aux2->valor != N)
+    {
+        aux2 = aux2->prox;  
+        
+    }
+
+    auxv1 = aux1-> valor;
+    auxv2 = aux2-> valor;
+
+      //CASO aux começo
+      if (aux1->prox->ant == NULL) 
+      { 
+        aux1 = aux2;
+
+        while (aux2->ant != NULL)
+        {
+          aux2 = aux2 -> ant;
+        }
+        
+          aux2 -> valor = auxv2;
+
+          aux1 ->valor = auxv1;
+      }
+
+        if (aux2->prox->ant == NULL)
+        {
+          aux2 = aux1;
+
+          while (aux1->ant != NULL)
+        {
+          aux1 = aux1 -> ant;
+        }
+        
+          aux1 -> valor = auxv1;
+
+          aux2 -> valor = auxv2;
+        }
+          //CASO aux fim
+          if (aux1->prox==NULL)
+          {
+            aux1 = aux2;
+            while (aux2->prox != NULL)
+            {
+              aux2 = aux2-> prox;
+            }
+            
+              aux1-> valor = auxv1;
+              aux2->valor = auxv2;
+          }
+
+            if (aux2->prox == NULL)
+            {
+              aux2 = aux1;
+              while (aux1->prox != NULL)
+              {
+                aux1 = aux1-> prox;
+              }
+            
+                aux1-> valor = auxv1;
+                aux2-> valor = auxv2;
+            }
+
+    //CASO PERTO    
+    if (aux1->prox->ant == aux2  && aux2->ant->prox == aux1)
+    {
+        aux1->ant->prox ->valor = auxv2;
+        aux2->ant->prox -> valor = auxv1;
+    }
+
+    //Caso Generico
+    aux = aux1->valor;
+    aux1->valor = aux2->valor;
+    aux2->valor = aux;
+
+  return L;
+}
